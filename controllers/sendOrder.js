@@ -4,7 +4,7 @@ const { Producto, Orden, Despacho, ListaProductos, Usuario } = require('../model
 
 const controllers = {}
 
-controllers.ordenDeCompra = async (req,res)=>{
+controllers.sendOrder = async (req,res)=>{
     try {
         const t = await sequelize.transaction()
         if (!t) throw {msg:'Error al crear transacción'}
@@ -103,20 +103,6 @@ controllers.ordenDeCompra = async (req,res)=>{
 
 
 
-
-
-
-controllers.usuarioPorId = async (req, res)=>{
-    try {
-        const cliente = await Usuario.findByPk(req.params.id)
-        console.log(cliente)
-        if (!cliente) throw { msg:"No existe el usuario" }
-        res.status(202).json({msg: 'Actualizado con éxito', nombreNuevo: cliente.nombre})
-    } catch (error) {
-        console.log(error.msg)
-        res.status(404).send(error.msg)
-    }
-}
 
 
 module.exports = controllers

@@ -5,7 +5,7 @@ const { Producto, Orden, ListaProductos } = require('../models/Associations')
 const controllers = {}
 
 
-controllers.getOrdenes = async (req,res)=>{
+controllers.getOrders = async (req,res)=>{
     try {
        return res.json(await Orden.findAll({order:[['id_orden', 'ASC']]}))
     } catch (error) {
@@ -13,7 +13,7 @@ controllers.getOrdenes = async (req,res)=>{
         res.status(404)
     }
 }
-controllers.ordenesPorRut = async (req,res)=>{
+controllers.ordersByRut = async (req,res)=>{
     try {
         const data = await Orden.findAll({ where: {rut: req.params.rut} })
         if(data) res.json(data)
@@ -22,7 +22,7 @@ controllers.ordenesPorRut = async (req,res)=>{
         console.log(error)
     }
 }
-controllers.deleteOrdenPorId = async (req,res)=>{
+controllers.deleteOrderById = async (req,res)=>{
     try {
         const t = await sequelize.transaction()
         if (!t) throw {msg:'Error al crear transacción'}
