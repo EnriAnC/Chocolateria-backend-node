@@ -13,7 +13,6 @@ controllers.login = async (req,res)=>{
         if (!usuario) throw {msg:"Hace falta el usuario"}
         if (!password) throw {msg:"Hace falta el password"}
         const session = await Usuario.findOne({where: {usuario}})
-        console.log(await bcrypt.hash(password, 10))
         const isValid = await bcrypt.compare(password, session.password)
         if (isValid){
             jwt.sign({id_usuario:session.id_usuario}, process.env.SECKEY, {expiresIn: "1d"}, (err, token)=>{
