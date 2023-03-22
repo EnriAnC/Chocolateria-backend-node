@@ -10,6 +10,7 @@ router.use(require('./order.routes'))
 router.use(require('./products.routes'))
 router.use(require('./session.routes'))
 router.use(require('./user.routes'))
+router.use(require('./productsList.routes'))
 
 
 
